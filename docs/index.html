@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>上拉加载更多</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="main">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!
+        </p>
+    </div>
+    <div class="loading" id="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <script src="../pulltoload.js"></script>
+    <script>
+    var pull = new PullToLoad("body")
+
+    pull.on("load", function(reset) {
+        setTimeout(function() {
+            // 模拟数据加载
+            var fragment = document.createDocumentFragment();
+            for (var i = 0; i < 5; i++) {
+                var p = document.createElement("p");
+                var text = document.createTextNode("new content Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic architecto quis necessitatibus rerum, ex ab deserunt impedit laboriosam, rem adipisci minima! Voluptates eum ducimus explicabo incidunt, eligendi! Dolores itaque, voluptate!")
+                p.appendChild(text);
+                fragment.appendChild(p);
+            }
+            main.append(fragment)
+            // 注意，当加载结束后，调用 reset 函数，以重置 loading
+            reset()
+        }, 1000)
+    })
+    </script>
+</body>
+
+</html>
