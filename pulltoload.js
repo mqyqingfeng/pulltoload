@@ -115,15 +115,14 @@
 
     function PullToLoad(selector, options) {
 
-    	EventEmitter.call(this);
-    	if (selector.self === selector || document.querySelector(selector).tagName.toLowerCase() == 'body') {
-    		isWindow = true;
-    		this.element = window;
-    		this.container = document.body;
-    	}
-    	else {
-    		this.container = this.element = typeof selector === "string" ? document.querySelector(selector) : selector;
-    	}
+        EventEmitter.call(this);
+        if (selector.self === selector || document.querySelector(selector).tagName.toLowerCase() == 'body') {
+            isWindow = true;
+            this.element = window;
+            this.container = document.body;
+        } else {
+            this.container = this.element = typeof selector === "string" ? document.querySelector(selector) : selector;
+        }
 
         this.options = util.extend({}, this.constructor.defaultOptions, options);
 
@@ -171,26 +170,25 @@
     // http://www.w3help.org/zh-cn/causes/SD9013
     proto.onscroll = function() {
 
-    	if (isWindow) {
+        if (isWindow) {
 
-    		this.onscroll = function(){
-    			var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    			var viewPortHeight = window.innerHeight || document.documentElement.clientHeight;
-    			var docHeight = document.documentElement.scrollHeight;
+            this.onscroll = function() {
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var viewPortHeight = window.innerHeight || document.documentElement.clientHeight;
+                var docHeight = document.documentElement.scrollHeight;
 
-    			if (scrollTop + viewPortHeight > docHeight - this.options.threshold) {
-    			    this.append()
-    			}
-    		}
+                if (scrollTop + viewPortHeight > docHeight - this.options.threshold) {
+                    this.append()
+                }
+            }
 
-    	}
-        else {
+        } else {
 
-        	this.onscroll = function(){
-        		if (this.element.scrollTop + this.element.clientHeight > this.element.scrollHeight - this.options.threshold) {
-        		    this.append()
-        		}
-        	}
+            this.onscroll = function() {
+                if (this.element.scrollTop + this.element.clientHeight > this.element.scrollHeight - this.options.threshold) {
+                    this.append()
+                }
+            }
 
         }
 
@@ -202,13 +200,12 @@
         loading = true;
 
         if (this._loader) {
-        	if (this.element.self === this.element) {
-        		document.body.append(this._loader)
-        	}
-        	else {
-        	this.element.append(this._loader)
+            if (this.element.self === this.element) {
+                document.body.append(this._loader)
+            } else {
+                this.element.append(this._loader)
 
-        	}
+            }
             this._loader.style.display = 'block';
         }
 
@@ -217,11 +214,11 @@
     };
 
     proto.reset = function() {
-    	if (this._loader) {
-    	    this._loader.style.display = 'none';
-    	}
+        if (this._loader) {
+            this._loader.style.display = 'none';
+        }
 
-    	loading = false;
+        loading = false;
     };
 
     if (typeof exports != 'undefined' && !exports.nodeType) {
